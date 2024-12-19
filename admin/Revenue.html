@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyze Revenue Data</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffcc66;
+        }
+
+        /* Sidebar */
+        .container {
+            display: flex;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #ff9966;
+            padding: 10px 40px 10px 20px;
+            height: 100vh;
+            border-right: 2px solid #ff6666;
+        }
+
+        .sidebar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .sidebar a {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            color: white;
+            background-color: #ff6666;
+            text-align: left;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .sidebar a.active {
+            background-color: #33cc33;
+        }
+
+        .sidebar a:hover {
+            background-color: #e74c3c;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header .dashboard-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff6666;
+        }
+
+        .header .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header .user-info button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            background-color: #ff9966;
+            color: white;
+            cursor: pointer;
+        }
+
+        .header .user-info button:hover {
+            background-color: #e74c3c;
+        }
+
+        /* Card Styles */
+        .card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            margin-bottom: 20px;
+            text-align: center;
+            color: #ff6666;
+        }
+
+        /* Revenue Info */
+        .revenue-info {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+
+        .revenue-info div h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .revenue-info div p {
+            font-size: 16px;
+            color: gray;
+        }
+
+        /* Chart Section */
+        .chart-container {
+            display: flex;
+            gap: 20px;
+            justify-content: space-around;
+        }
+
+        .chart-container canvas {
+            max-width: 400px;
+            max-height: 300px;
+        }
+
+        /* Transactions Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th, table td {
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+
+        table th {
+            background-color: #ff9966;
+            color: white;
+        }
+
+        table td {
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">A</div>
+            <a class="active" href="Revenue.html" >Revenue</a>
+            <a href="PredictIngredient.html">Predict Ingredient Demand</a>
+            <a href="FeedbackData.html">Feedback Data</a>
+            <a href="CustomerFeedback.html">Customer Feedback</a>
+            <a href="ManageMenu.html">Manage Menu</a>
+            <a href="TracksBooking.html">Tracks Booking</a>
+            <a href="MISRevenue.html">MIS Revenue</a>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <div class="dashboard-title">Analyze Revenue Data</div>
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i>
+                    <button>Admin</button>
+                </div>
+            </div>
+
+            <!-- Revenue Info -->
+            <div class="card">
+                <div class="revenue-info">
+                    <div>
+                        <h3>Total Revenue</h3>
+                        <p>4.37 billion VND</p>
+                    </div>
+                    <div>
+                        <h3>This Year's Revenue</h3>
+                        <p>32.8 million VND</p>
+                    </div>
+                    <div>
+                        <h3>Growth</h3>
+                        <p>3% this month</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Revenue Trends -->
+            <div class="card">
+                <h2>Revenue Trends</h2>
+                <div class="chart-container">
+                    <canvas id="monthlyRevenueChart"></canvas>
+                    <canvas id="quarterlyRevenueChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Recent Transactions -->
+            <div class="card">
+                <h2>Recent Transactions</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Item</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2023-12-05 14:30</td>
+                            <td>Dish A</td>
+                            <td>3</td>
+                            <td>300k VND</td>
+                        </tr>
+                        <tr>
+                            <td>2023-12-05 15:00</td>
+                            <td>Dish B</td>
+                            <td>2</td>
+                            <td>200k VND</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const monthlyCtx = document.getElementById('monthlyRevenueChart').getContext('2d');
+        const quarterlyCtx = document.getElementById('quarterlyRevenueChart').getContext('2d');
+
+        // Monthly Revenue Chart
+        new Chart(monthlyCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Monthly Revenue (VND)',
+                    data: [12, 15, 10, 18, 20, 25],
+                    borderColor: '#ff6666',
+                    fill: true,
+                    backgroundColor: 'rgba(255, 102, 102, 0.2)'
+                }]
+            }
+        });
+
+        // Quarterly Revenue Chart
+        new Chart(quarterlyCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+                datasets: [{
+                    label: 'Quarterly Revenue (VND)',
+                    data: [50, 60, 70, 80],
+                    backgroundColor: '#33cc33'
+                }]
+            }
+        });
+    </script>
+</body>
+</html>

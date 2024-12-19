@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffcc66;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #ff6666;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .header .nav {
+            display: flex;
+            gap: 15px;
+        }
+
+        .header .nav a {
+            background-color: white;
+            color: #ff6666;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+        .header .nav a.active {
+            background-color: #33cc33;
+            color: white;
+        }
+
+        .header .user {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header .user i {
+            font-size: 20px;
+        }
+
+        /* Content Styles */
+        .content {
+            padding: 20px;
+        }
+
+        .content .filter {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .content .filter button {
+            background-color: #33cc33;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            color: white;
+        }
+
+        .content .filter .dropdown {
+            background-color: white;
+            color: #33cc33;
+            border: 2px solid #33cc33;
+        }
+
+        /* Table List */
+        .tables {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .table {
+            background-color: white;
+            border-radius: 20px;
+            padding: 20px;
+            width: 220px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .table .pay {
+            background-color: #33cc33;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 14px;
+            color: white;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .table .pay:hover {
+            background-color: #28a745;
+        }
+
+        .table ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 0 0;
+        }
+
+        .table ul li {
+            text-align: left;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .table div {
+            margin-bottom: 10px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .table.empty {
+            background-color: #ff9966;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">A</div>
+        <div class="nav">
+            <a class="active">Table List</a>
+            <a href="OnlineOrder.html">Order List</a>
+        </div>
+        <div class="user">
+            <i class="fas fa-user"></i>
+            <button>Staff</button>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+        <!-- Filter Buttons -->
+        <div class="filter">
+            <button>Day: 11/25/2024</button>
+            <button class="dropdown">Table <i class="fas fa-caret-down"></i></button>
+        </div>
+
+        <!-- Tables -->
+        <div class="tables">
+            <!-- Empty Table -->
+            <div class="table empty">
+                <div>Table 1</div>
+                <div>Empty</div>
+            </div>
+
+            <div class="table empty">
+                <div>Table 2</div>
+                <div>Empty</div>
+            </div>
+
+            <!-- Occupied Table -->
+            <div class="table">
+                <div>Table 3</div>
+                <a class="pay" href="payment.html?table=Table%203">Pay</a>
+                <div>Order:</div>
+                <ul>
+                    <li>Mi quang</li>
+                    <li>Pepsi</li>
+                </ul>
+            </div>
+
+            <div class="table">
+                <div>Table 4</div>
+                <a class="pay" href="payment.html?table=Table%204">Pay</a>
+                <div>Order:</div>
+                <ul>
+                    <li>Pho</li>
+                    <li>Coca</li>
+                </ul>
+            </div>
+
+            <!-- More Tables -->
+            <div class="table empty">
+                <div>Table 5</div>
+                <div>Empty</div>
+            </div>
+
+            <div class="table empty">
+                <div>Table 6</div>
+                <div>Empty</div>
+            </div>
+
+            <div class="table">
+                <div>Table 7</div>
+                <a class="pay" href="payment.html?table=Table%207">Pay</a>
+                <div>Order:</div>
+                <ul>
+                    <li>Bun Dau Mam Tom</li>
+                </ul>
+            </div>
+
+            <div class="table empty">
+                <div>Table 8</div>
+                <div>Empty</div>
+            </div>
+
+            <div class="table empty">
+                <div>Table 9</div>
+                <div>Empty</div>
+            </div>
+
+            <div class="table">
+                <div>Table 10</div>
+                <a class="pay" href="payment.html?table=Table%2010">Pay</a>
+                <div>Order:</div>
+                <ul>
+                    <li>Canh Chua</li>
+                    <li>Com Suon</li>
+                </ul>
+            </div>
+
+            <div class="table empty">
+                <div>Table 11</div>
+                <div>Empty</div>
+            </div>
+
+            <div class="table">
+                <div>Table 12</div>
+                <a class="pay" href="payment.html?table=Table%2012">Pay</a>
+                <div>Order:</div>
+                <ul>
+                    <li>Com ba roi</li>
+                    <li>Tra da</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

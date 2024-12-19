@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffcc66;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Sidebar */
+        .container {
+    display: flex;
+}
+
+.sidebar {
+            width: 200px;
+            background-color: #ff9966;
+            padding: 10px 40px 10px 20px;
+            height: 100vh;
+            border-right: 2px solid #ff6666;
+        }
+
+        .sidebar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .sidebar a {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            color: white;
+            background-color: #ff6666;
+            text-align: left;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .sidebar a.active {
+            background-color: #33cc33;
+        }
+
+        .sidebar a:hover {
+            background-color: #e74c3c;
+        }
+
+
+        /* Main Content */
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+            background-color: #ffcc66;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header .search-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header .search-bar input {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .header .search-bar i {
+            cursor: pointer;
+        }
+
+        .header .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header .user-info button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            background-color: #ff9966;
+            color: white;
+            cursor: pointer;
+        }
+
+        .header .user-info button:hover {
+            background-color: #e74c3c;
+        }
+
+        /* Booking Calendar */
+        .booking-calendar, .booking-list {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .booking-calendar h2, .booking-list h2 {
+            background-color: #ff6666;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 0 0 20px 0;
+            text-align: center;
+        }
+
+        .booking-calendar .booking-item {
+            background-color: #ff9966;
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* Booking List Table */
+        .booking-list table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .booking-list table th {
+            background-color: #ff6666;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .booking-list table td {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .booking-list table td:last-child {
+            text-align: center;
+        }
+
+        .booking-list table button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #33cc33;
+            color: white;
+        }
+
+        .booking-list table button:hover {
+            background-color: #28a745;
+        }
+
+        .status-dropdown {
+            position: relative;
+        }
+
+        .status-dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            z-index: 1;
+        }
+
+        .status-dropdown-content a {
+            padding: 10px;
+            text-decoration: none;
+            display: block;
+            color: black;
+        }
+
+        .status-dropdown-content a:hover {
+            background-color: #f0f0f0;
+        }
+
+        .status-dropdown:hover .status-dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">A</div>
+            <a href="Revenue.html" >Revenue</a>
+            <a href="PredictIngredient.html">Predict Ingredient Demand</a>
+            <a href="FeedbackData.html">Feedback Data</a>
+            <a href="CustomerFeedback.html">Customer Feedback</a>
+            <a href="ManageMenu.html">Manage Menu</a>
+            <a class="active" href="TracksBooking.html">Tracks Booking</a>
+            <a href="MISRevenue.html">MIS Revenue</a>
+        </div>
+        
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search...">
+                    <i class="fas fa-search"></i>
+                    <i class="fas fa-calendar-alt"></i>
+                    <div class="status-dropdown">
+                        <button>Confirmed <i class="fas fa-caret-down"></i></button>
+                        <div class="status-dropdown-content">
+                            <a href="#">Pending</a>
+                            <a href="#">Canceled</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="user-info">
+                    <i class="fas fa-user"></i>
+                    <button>Admin</button>
+                </div>
+            </div>
+
+            <!-- Booking Calendar -->
+            <div class="booking-calendar">
+                <h2>Booking Calendar</h2>
+                <div>11/26/2024</div>
+                <div class="booking-item">
+                    <div>10:00 AM</div>
+                    <div>Nguyễn Hoàng Anh</div>
+                </div>
+                <div class="booking-item">
+                    <div>11:00 AM</div>
+                    <div>Nguyễn Thái Bảo</div>
+                </div>
+            </div>
+
+            <!-- Booking List -->
+            <div class="booking-list">
+                <h2>Booking List</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Customer Name</th>
+                            <th>Time</th>
+                            <th>Number of Customers</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nguyễn Hoàng Anh</td>
+                            <td>10:00 AM</td>
+                            <td>2</td>
+                            <td>Confirmed</td>
+                            <td><button>Edit</button></td>
+                        </tr>
+                        <tr>
+                            <td>Nguyễn Thái Bảo</td>
+                            <td>11:00 AM</td>
+                            <td>4</td>
+                            <td>Pending</td>
+                            <td><button>Cancel</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

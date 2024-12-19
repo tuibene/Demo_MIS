@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Feedback</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffcc66;
+        }
+
+        /* Sidebar */
+        .container {
+            display: flex;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #ff9966;
+            padding: 10px 40px 10px 20px;
+            height: 100vh;
+            border-right: 2px solid #ff6666;
+        }
+
+        .sidebar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .sidebar a {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            color: white;
+            background-color: #ff6666;
+            text-align: left;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .sidebar a.active {
+            background-color: #33cc33;
+        }
+
+        .sidebar a:hover {
+            background-color: #e74c3c;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header .dashboard-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff6666;
+        }
+
+        .header .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header .user-info button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            background-color: #ff9966;
+            color: white;
+            cursor: pointer;
+        }
+
+        .header .user-info button:hover {
+            background-color: #e74c3c;
+        }
+
+        /* Card Styles */
+        .card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            margin-bottom: 20px;
+            text-align: center;
+            color: #ff6666;
+        }
+
+        /* Filter Section */
+        .filter-section {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .filter-section select, .filter-section input {
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+        }
+
+        .filter-section select:focus, .filter-section input:focus {
+            border-color: #ff6666;
+        }
+
+        /* Feedback Cards */
+        .feedback-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .feedback-card {
+            background-color: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: calc(50% - 20px);
+        }
+
+        .feedback-card h3 {
+            margin: 0;
+            color: #ff6666;
+            font-size: 18px;
+        }
+
+        .feedback-card .rating {
+            margin: 10px 0;
+            color: #ffd700;
+        }
+
+        .feedback-card .content {
+            margin: 10px 0;
+        }
+
+        .feedback-card .status {
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .feedback-card .actions a {
+            color: #ff6666;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        .feedback-card .actions a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">A</div>
+            <a href="Revenue.html">Revenue</a>
+            <a href="PredictIngredient.html">Predict Ingredient Demand</a>
+            <a href="FeedbackData.html">Feedback Data</a>
+            <a class="active" href="CustomerFeedback.html">Customer Feedback</a>
+            <a href="ManageMenu.html">Manage Menu</a>
+            <a href="TracksBooking.html">Tracks Booking</a>
+            <a href="MISRevenue.html">MIS Revenue</a>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <div class="dashboard-title">Customer Feedback</div>
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i>
+                    <button>Admin</button>
+                </div>
+            </div>
+
+            <!-- Filter Section -->
+            <div class="card filter-section">
+                <select>
+                    <option>Service</option>
+                    <option>Food Quality</option>
+                    <option>Space</option>
+                    <option>Price</option>
+                </select>
+                <select>
+                    <option>1 Star</option>
+                    <option>2 Stars</option>
+                    <option>3 Stars</option>
+                    <option>4 Stars</option>
+                    <option>5 Stars</option>
+                </select>
+                <input type="date" placeholder="From Date">
+                <input type="date" placeholder="To Date">
+            </div>
+
+            <!-- Feedback Container -->
+            <div class="card">
+                <h2>Feedback List</h2>
+                <div class="feedback-container">
+                    <div class="feedback-card">
+                        <h3>Customer: Nguyễn Hoàng Anh</h3>
+                        <div class="rating">★★★★☆</div>
+                        <div class="content">Great service, very friendly staff!</div>
+                        <div class="status">Status: Responded</div>
+                        <div class="actions">
+                            <a href="#">Detail</a>
+                            <a href="#">Reply</a>
+                            <a href="#">Mark as Done</a>
+                        </div>
+                    </div>
+                    <div class="feedback-card">
+                        <h3>Customer: Nguyễn Thái Bảo</h3>
+                        <div class="rating">★★☆☆☆</div>
+                        <div class="content">Food is cold, needs improvement.</div>
+                        <div class="status">Status: No response yet</div>
+                        <div class="actions">
+                            <a href="#">Detail</a>
+                            <a href="#">Reply</a>
+                            <a href="#">Mark as Done</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

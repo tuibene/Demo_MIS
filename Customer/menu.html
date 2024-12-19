@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Page</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            background-color: #ffcc66;
+            padding: 10px 20px;
+            border-bottom: 2px solid black;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .nav {
+            display: flex;
+            gap: 10px;
+        }
+        .nav-link.active {
+            background-color: #ff6666;
+            color: white !important;
+            border-radius: 5px;
+        }
+        .nav a {
+            background-color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .sidebar {
+            background-color: #ffcc66;
+            padding: 20px;
+            height: 130vh;
+            border-right: 2px solid black;
+        }
+        .order-btn {
+            background-color: #33cc33;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .order-btn:hover {
+            background-color: #28a745;
+        }
+        .card {
+            background-color: #ffcc66;
+            border-radius: 10px;
+            border: none;
+        }
+        .card img {
+            border-radius: 10px 10px 0 0;
+        }
+        .card-title, .card-text {
+            background-color: #ffeb99;
+            margin: 0;
+            padding: 5px;
+            text-align: center;
+        }
+        .btn-add {
+            background-color: #33cc33;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+        .btn-add:hover {
+            background-color: #28a745;
+        }
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1055;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header d-flex justify-content-between align-items-center">
+        <div class="logo">A</div>
+        <nav class="nav">
+            <a href="feedback.html" class="nav-link">Feedback</a>
+            <a href="booking.html" class="nav-link">Book Table</a>
+            <a class="nav-link active">Menu</a>
+        </nav>
+        <div class="d-flex align-items-center">
+            <span>090000000</span>
+            <div class="ms-3">
+                Nguyễn Hoàng Anh
+            </div>
+        </div>
+    </header>
+
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <aside class="sidebar col-2">
+            <input type="text" class="form-control mb-3" placeholder="Search..." oninput="searchFood()">
+            <h5>Drinks</h5>
+            <ul class="list-unstyled ms-3">
+                <li>Soft Drink</li>
+                <li>Wine</li>
+            </ul>
+            <h5>Foods</h5>
+            <ul class="list-unstyled ms-3">
+                <li>Soup</li>
+                <li>Salad</li>
+                <li>Main course</li>
+            </ul>
+            <button class="order-btn mt-3" onclick="calculateTotalPrice()">Order (0)</button>
+        </aside>
+
+        <!-- Content -->
+        <main class="col-10 p-4">
+            <div class="row row-cols-1 row-cols-md-4 g-4">
+                <!-- Product Card -->
+                <div class="col">
+                    <div class="card">
+                        <img src="https://beptueu.vn/hinhanh/tintuc/top-15-hinh-anh-mon-an-ngon-viet-nam-khien-ban-khong-the-roi-mat.jpeg" class="card-img-top" alt="Banh Khot" onclick="showFoodDetails('https://beptueu.vn/hinhanh/tintuc/top-15-hinh-anh-mon-an-ngon-viet-nam-khien-ban-khong-the-roi-mat.jpeg', 'Bánh khọt', '55k', 'Delicious Vietnamese pancake')">
+                        <div class="card-title">Bánh khọt</div>
+                        <div class="card-text">55k</div>
+                        <div class="text-center py-2">
+                            <button class="btn-add" onclick="addToCart('Bánh khọt', 55000)">Add</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img src="https://beptueu.vn/hinhanh/tintuc/banh-cuon-hinh-anh-mon-an-dac-san-viet-nam.jpg" class="card-img-top" alt="Banh Cuon Nong" onclick="showFoodDetails('https://beptueu.vn/hinhanh/tintuc/banh-cuon-hinh-anh-mon-an-dac-san-viet-nam.jpg', 'Bánh cuốn nóng', '65k', 'Steamed rice rolls with savory fillings')">
+                        <div class="card-title">Bánh cuốn nóng</div>
+                        <div class="card-text">65k</div>
+                        <div class="text-center py-2">
+                            <button class="btn-add" onclick="addToCart('Bánh cuốn nóng', 65000)">Add</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img src="https://beptueu.vn/hinhanh/tintuc/banh-bao-hinh-anh-do-an-dep-mat.jpg" class="card-img-top" alt="Banh Bao" onclick="showFoodDetails('https://beptueu.vn/hinhanh/tintuc/banh-bao-hinh-anh-do-an-dep-mat.jpg', 'Bánh bao', '45k', 'Delicious steamed buns')">
+                        <div class="card-title">Bánh bao</div>
+                        <div class="card-text">45k</div>
+                        <div class="text-center py-2">
+                            <button class="btn-add" onclick="addToCart('Bánh bao', 45000)">Add</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img src="https://beptueu.vn/hinhanh/tintuc/top-15-hinh-anh-mon-an-ngon-viet-nam-khien-ban-khong-the-roi-mat-10.jpg" class="card-img-top" alt="Bun Bo Hue" onclick="showFoodDetails('https://beptueu.vn/hinhanh/tintuc/top-15-hinh-anh-mon-an-ngon-viet-nam-khien-ban-khong-the-roi-mat-10.jpg', 'Bún bò huế', '55k', 'Traditional spicy beef noodle soup')">
+                        <div class="card-title">Bún bò huế</div>
+                        <div class="card-text">55k</div>
+                        <div class="text-center py-2">
+                            <button class="btn-add" onclick="addToCart('Bún bò huế', 55000)">Add</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img src="https://beptueu.vn/hinhanh/tintuc/cac-loai-xoi-hinh-anh-cac-mon-an-ngon.jpg" class="card-img-top" alt="Xoi" onclick="showFoodDetails('https://beptueu.vn/hinhanh/tintuc/cac-loai-xoi-hinh-anh-cac-mon-an-ngon.jpg', 'Xôi', '39k', 'Sticky rice with toppings')">
+                        <div class="card-title">Xôi</div>
+                        <div class="card-text">39k</div>
+                        <div class="text-center py-2">
+                            <button class="btn-add" onclick="addToCart('Xôi', 39000)">Add</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img src="https://beptueu.vn/hinhanh/tintuc/top-15-hinh-anh-mon-an-ngon-viet-nam-khien-ban-khong-the-roi-mat-11.jpg" class="card-img-top" alt="Mi Quang" onclick="showFoodDetails('https://beptueu.vn/hinhanh/tintuc/top-15-hinh-anh-mon-an-ngon-viet-nam-khien-ban-khong-the-roi-mat-11.jpg', 'Mì quảng', '55k', 'Vietnamese turmeric noodles')">
+                        <div class="card-title">Mì quảng</div>
+                        <div class="card-text">55k</div>
+                        <div class="text-center py-2">
+                            <button class="btn-add" onclick="addToCart('Mì quảng', 55000)">Add</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img src="https://beptueu.vn/hinhanh/tintuc/top-15-hinh-anh-mon-an-ngon-viet-nam-khien-ban-khong-the-roi-mat-13.jpg" class="card-img-top" alt="Hu Tieu" onclick="showFoodDetails('https://beptueu.vn/hinhanh/tintuc/top-15-hinh-anh-mon-an-ngon-viet-nam-khien-ban-khong-the-roi-mat-13.jpg', 'Hủ tiếu', '55k', 'Southern Vietnamese noodle soup')">
+                        <div class="card-title">Hủ tiếu</div>
+                        <div class="card-text">55k</div>
+                        <div class="text-center py-2">
+                            <button class="btn-add" onclick="addToCart('Hủ tiếu', 55000)">Add</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img src="https://beptueu.vn/hinhanh/tintuc/top-15-hinh-anh-mon-an-ngon-viet-nam-khien-ban-khong-the-roi-mat-12.jpg" class="card-img-top" alt="Com Tam" onclick="showFoodDetails('https://beptueu.vn/hinhanh/tintuc/top-15-hinh-anh-mon-an-ngon-viet-nam-khien-ban-khong-the-roi-mat-12.jpg', 'Cơm tắm', '55k', 'Broken rice with grilled pork')">
+                        <div class="card-title">Cơm tắm</div>
+                        <div class="card-text">55k</div>
+                        <div class="text-center py-2">
+                            <button class="btn-add" onclick="addToCart('Cơm tắm', 55000)">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let cart = {};
+
+        function addToCart(item, price) {
+            if (cart[item]) {
+                cart[item].quantity++;
+            } else {
+                cart[item] = { price: price, quantity: 1 };
+            }
+            updateOrderCount();
+            showToast(`${item} has been added to your cart!`);
+        }
+
+        function updateOrderCount() {
+            const totalItems = Object.values(cart).reduce((total, item) => total + item.quantity, 0);
+            document.querySelector('.order-btn').textContent = `Order (${totalItems})`;
+        }
+
+        function calculateTotalPrice() {
+            const totalPrice = Object.values(cart).reduce((total, item) => total + item.price * item.quantity, 0);
+            showToast(`Total Price: ${totalPrice} VND. The order has been placed in the kitchen for processing.`);
+        }
+
+        function searchFood() {
+            const query = document.querySelector('.form-control').value.toLowerCase();
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                const title = card.querySelector('.card-title').textContent.toLowerCase();
+                if (title.includes(query)) {
+                    card.parentElement.style.display = 'block';
+                } else {
+                    card.parentElement.style.display = 'none';
+                }
+            });
+        }
+
+        function showFoodDetails(image, title, price, description) {
+            document.getElementById('modalImage').src = image;
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalPrice').textContent = `${price} VND`;
+            document.getElementById('modalDescription').textContent = description;
+            const modal = new bootstrap.Modal(document.getElementById('foodModal'));
+            modal.show();
+        }
+
+        function showToast(message) {
+            const toastContainer = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'toast align-items-center text-white bg-primary border-0';
+            toast.role = 'alert';
+            toast.ariaLive = 'assertive';
+            toast.ariaAtomic = 'true';
+            toast.innerHTML = `
+                <div class="d-flex">
+                    <div class="toast-body">
+                        ${message}
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            `;
+            toastContainer.appendChild(toast);
+            const bsToast = new bootstrap.Toast(toast);
+            bsToast.show();
+            toast.addEventListener('hidden.bs.toast', () => {
+                toast.remove();
+            });
+        }
+    </script>
+</body>
+</html>

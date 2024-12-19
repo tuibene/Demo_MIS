@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline Order</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffcc66;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header */
+        .header {
+            background-color: #ff6666;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header img {
+            height: 40px;
+        }
+
+        .header .nav {
+            display: flex;
+            gap: 15px;
+        }
+
+        .header .nav button {
+            background-color: white;
+            color: #ff6666;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .header .nav button.active {
+            background-color: #33cc33;
+            color: white;
+        }
+
+        .header .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header .user-info i {
+            font-size: 20px;
+        }
+
+        .header .user-info span {
+            background-color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            color: #ff6666;
+        }
+
+        /* Content */
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .content .date {
+            background-color: #33cc33;
+            color: white;
+            padding: 5px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        /* Tables */
+        .tables {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .table {
+            background-color: white;
+            padding: 20px;
+            border-radius: 20px;
+            width: 150px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .table .status {
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .table .confirm-btn {
+            background-color: #33cc33;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .table .confirm-btn:hover {
+            background-color: #28a745;
+        }
+
+        .table.empty .status {
+            color: #ff6666;
+        }
+
+        .table.pending .status {
+            color: #ffa502;
+        }
+
+        .table.confirmed .status {
+            color: #33cc33;
+        }
+
+        /* Close All Button */
+        .close-all-btn {
+            background-color: #ff6666;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 30px;
+        }
+
+        .close-all-btn:hover {
+            background-color: #e74c3c;
+        }
+
+        .status-bar {
+            background-color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid black;
+        }
+
+        .status-select {
+            background-color: #cc8f33;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .status-select option {
+            background-color: white;
+            color: black;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <img src="https://storage.googleapis.com/a1aa/image/6yMfTKY5ebsbWUjARKJfZuMxeFkX2GcWXte8ehpExNZeoxh6JA.jpg" alt="Logo">
+        <div class="nav">
+            <button>Home</button>
+            <button class="active">Table List</button>
+            <button>Order List</button>
+        </div>
+        <div class="user-info">
+            <i class="fas fa-user"></i>
+            <span>Nguyễn Hoàng Anh</span>
+        </div>
+    </div>
+
+    <div class="status-bar">
+        <div class="status">Day: 11/25/2024</div>
+        <select id="statusMenu" class="status-select">
+            <option value="online" >Online</option>
+            <option value="offline" selected>Offline</option>
+        </select>
+    </div>
+    <!-- Content -->
+    <div class="content">
+        <!-- Date -->
+        <div class="date">
+            Day: 11/25/2024
+        </div>
+
+        <!-- Table List -->
+        <div class="tables">
+            <div class="table empty">
+                <div>Table 1</div>
+                <div class="status">Empty</div>
+            </div>
+            <div class="table pending">
+                <div>Table 2</div>
+                <div class="status">Pending</div>
+                <button class="confirm-btn">Confirm</button>
+            </div>
+            <div class="table confirmed">
+                <div>Table 3</div>
+                <div class="status">Confirmed</div>
+            </div>
+            <div class="table confirmed">
+                <div>Table 4</div>
+                <div class="status">Confirmed</div>
+            </div>
+            <div class="table empty">
+                <div>Table 5</div>
+                <div class="status">Empty</div>
+            </div>
+            <div class="table pending">
+                <div>Table 6</div>
+                <div class="status">Pending</div>
+                <button class="confirm-btn">Confirm</button>
+            </div>
+            <div class="table confirmed">
+                <div>Table 7</div>
+                <div class="status">Confirmed</div>
+            </div>
+            <div class="table pending">
+                <div>Table 8</div>
+                <div class="status">Pending</div>
+                <button class="confirm-btn">Confirm</button>
+            </div>
+            <div class="table empty">
+                <div>Table 9</div>
+                <div class="status">Empty</div>
+            </div>
+            <div class="table confirmed">
+                <div>Table 10</div>
+                <div class="status">Confirmed</div>
+            </div>
+            <div class="table empty">
+                <div>Table 11</div>
+                <div class="status">Empty</div>
+            </div>
+            <div class="table confirmed">
+                <div>Table 12</div>
+                <div class="status">Confirmed</div>
+            </div>
+        </div>
+
+        <!-- Close All Button -->
+        <button class="close-all-btn">Close All</button>
+    </div>
+</body>
+<script>
+    document.getElementById("statusMenu").addEventListener("change", function () {
+        const selectedStatus = this.value;
+
+        if (selectedStatus === "online") {
+            window.location.href = "OnlineOrder.html";
+        } else {
+            window.location.href = "OfflineOrder.html";
+        }
+    });
+</script>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Revenue Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffcc66;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Sidebar */
+        .container {
+            display: flex;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #ff9966;
+            padding: 10px 40px 10px 20px;
+            height: 100vh;
+            border-right: 2px solid #ff6666;
+        }
+
+        .sidebar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .sidebar a {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            color: white;
+            background-color: #ff6666;
+            text-align: left;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .sidebar a.active {
+            background-color: #33cc33;
+        }
+
+        .sidebar a:hover {
+            background-color: #e74c3c;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header .dashboard-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff6666;
+        }
+
+        .header .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header .user-info button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            background-color: #ff9966;
+            color: white;
+            cursor: pointer;
+        }
+
+        .header .user-info button:hover {
+            background-color: #e74c3c;
+        }
+
+        /* Filter Section */
+        .filter-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .filter-section button {
+            background-color: #ff6666;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .filter-section button:hover {
+            background-color: #e74c3c;
+        }
+
+        .filter-section .active {
+            background-color: #33cc33;
+        }
+
+        /* Chart Section */
+        .chart-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .chart-container h2 {
+            margin-bottom: 20px;
+            text-align: center;
+            color: #ff6666;
+        }
+
+        canvas {
+            max-height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">A</div>
+            <a href="Revenue.html" >Revenue</a>
+            <a href="PredictIngredient.html">Predict Ingredient Demand</a>
+            <a href="FeedbackData.html">Feedback Data</a>
+            <a href="CustomerFeedback.html">Customer Feedback</a>
+            <a href="ManageMenu.html">Manage Menu</a>
+            <a href="TracksBooking.html">Tracks Booking</a>
+            <a class="active" href="MISRevenue.html">MIS Revenue</a>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <div class="dashboard-title">Revenue Dashboard</div>
+                <div class="user-info">
+                    <i class="fas fa-user"></i>
+                    <button>Admin</button>
+                </div>
+            </div>
+
+            <!-- Filter Section -->
+            <div class="filter-section">
+                <button id="daysFilter">Day</button>
+                <button id="weeksFilter">Week</button>
+                <button id="monthsFilter" class="active">Month</button>
+            </div>
+
+            <!-- Chart Section -->
+            <div class="chart-container">
+                <h2 id="chartTitle">Revenue by Month</h2>
+                <canvas id="revenueChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('revenueChart').getContext('2d');
+
+        // Chart Data
+        const chartData = {
+            days: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                data: [1000, 1200, 900, 1100, 1050, 950, 1200],
+                title: 'Revenue by Day'
+            },
+            weeks: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                data: [3000, 4000, 3500, 4500],
+                title: 'Revenue by Week'
+            },
+            months: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                data: [12000, 11000, 10000, 9500, 8700, 8900, 9100, 10000, 9500, 8700, 9500, 10500],
+                title: 'Revenue by Month'
+            }
+        };
+
+        // Initialize Chart
+        let revenueChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: chartData.months.labels,
+                datasets: [{
+                    label: 'Revenue ($)',
+                    data: chartData.months.data,
+                    backgroundColor: '#00c4cc'
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Update Chart Function
+        function updateChart(filter) {
+            const buttons = document.querySelectorAll('.filter-section button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`${filter}Filter`).classList.add('active');
+
+            revenueChart.data.labels = chartData[filter].labels;
+            revenueChart.data.datasets[0].data = chartData[filter].data;
+            document.getElementById('chartTitle').textContent = chartData[filter].title;
+
+            revenueChart.update();
+        }
+
+        // Event Listeners for Filters
+        document.getElementById('daysFilter').addEventListener('click', () => updateChart('days'));
+        document.getElementById('weeksFilter').addEventListener('click', () => updateChart('weeks'));
+        document.getElementById('monthsFilter').addEventListener('click', () => updateChart('months'));
+    </script>
+</body>
+</html>

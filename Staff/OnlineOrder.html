@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Order</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffcc66;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #ff6666;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        .header img {
+            height: 40px;
+        }
+
+        .header .nav {
+            display: flex;
+            gap: 15px;
+        }
+
+        .header .nav a {
+            background-color: white;
+            color: #ff6666;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+        .header .nav a.active {
+            background-color: #33cc33;
+            color: white;
+        }
+
+        .header .user {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header .user i {
+            font-size: 24px;
+        }
+
+        /* Status Bar */
+        .status-bar {
+            background-color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid black;
+        }
+
+        /* Order List */
+        .order-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+            justify-content: center;
+        }
+
+        .order-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .order-card p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+
+        .order-card ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        .order-card ul li {
+            list-style: disc;
+            margin-bottom: 5px;
+        }
+
+        .order-card .done-button {
+            background-color: #33cc33;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            float: right;
+        }
+
+        .order-card .done-button:hover {
+            background-color: #28a745;
+        }
+
+        /* Close Order Button */
+        .close-order-button {
+            background-color: #33cc33;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 15px 30px;
+            cursor: pointer;
+            font-size: 18px;
+            display: block;
+            margin: 20px auto;
+        }
+
+        .close-order-button:hover {
+            background-color: #28a745;
+        }
+
+        .status-select {
+            background-color: #33cc33;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .status-select option {
+            background-color: white;
+            color: black;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <img alt="Logo" src="https://storage.googleapis.com/a1aa/image/5zZl8rUwcVpTFZuAI0CT1uqPOdCpomKR51H5WsxYtBbW5Q9E.jpg">
+        <div class="nav">
+            <!-- <a>Home</a> -->
+            <a href="checkOrderTable.html">Table List</a>
+
+            <a class="active">Order List</a>
+        </div>
+        <div class="user">
+            <i class="fas fa-user"></i>
+            <span>Staff</span>
+        </div>
+    </div>
+
+    <div class="status-bar">
+        <div class="status">Day: 11/25/2024</div>
+        <select id="statusMenu" class="status-select">
+            <option class="status online" value="online" selected>Online</option>
+            <option value="offline">Offline</option>
+        </select>
+    </div>
+
+    <!-- Order List -->
+    <div class="order-list">
+        <div class="order-card">
+            <p><strong>Customer:</strong> Nguyễn Thái Bảo - 0900000001</p>
+            <p><strong>Order:</strong></p>
+            <ul>
+                <li>Muc chien nuoc mam</li>
+                <li>Rong xanh vuot dai duong</li>
+            </ul>
+            <button class="done-button">Done</button>
+        </div>
+
+        <div class="order-card">
+            <p><strong>Customer:</strong> Nguyễn Hoàng Anh - 0900000002</p>
+            <p><strong>Order:</strong></p>
+            <ul>
+                <li>Muc chien nuoc mam</li>
+                <li>Rong xanh vuot dai duong</li>
+            </ul>
+            <button class="done-button">Done</button>
+        </div>
+
+        <div class="order-card">
+            <p><strong>Customer:</strong> Phạm Nguyên Anh - 0900000003</p>
+            <p><strong>Order:</strong></p>
+            <ul>
+                <li>Muc chien nuoc mam</li>
+                <li>Rong xanh vuot dai duong</li>
+            </ul>
+            <button class="done-button">Done</button>
+        </div>
+
+        <div class="order-card">
+            <p><strong>Customer:</strong> Đào Minh Phúc - 0900000004</p>
+            <p><strong>Order:</strong></p>
+            <ul>
+                <li>Muc chien nuoc mam</li>
+                <li>Rong xanh vuot dai duong</li>
+            </ul>
+            <button class="done-button">Done</button>
+        </div>
+
+        <div class="order-card">
+            <p><strong>Customer:</strong> Nguyễn Thái Bảo - 0900000005</p>
+            <p><strong>Order:</strong></p>
+            <ul>
+                <li>Muc chien nuoc mam</li>
+                <li>Rong xanh vuot dai duong</li>
+            </ul>
+            <button class="done-button">Done</button>
+        </div>
+
+        <div class="order-card">
+            <p><strong>Customer:</strong> Nguyễn Thái Bảo - 0900000005</p>
+            <p><strong>Order:</strong></p>
+            <ul>
+                <li>Muc chien nuoc mam</li>
+                <li>Rong xanh vuot dai duong</li>
+            </ul>
+            <button class="done-button">Done</button>
+        </div>
+    </div>
+
+    <!-- Close Order Button -->
+    <button class="close-order-button">Close Online Order</button>
+</body>
+<script>
+    document.getElementById("statusMenu").addEventListener("change", function () {
+        const selectedStatus = this.value;
+
+        if (selectedStatus === "online") {
+            window.location.href = "OnlineOrder.html";
+        } else {
+            window.location.href = "OfflineOrder.html";
+        }
+    });
+</script>
+</html>

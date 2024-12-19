@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffcc66;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .header {
+            background-color: #ffcc66;
+            padding: 10px 20px;
+            border-bottom: 2px solid black;
+        }
+
+        .nav {
+            display: flex;
+            gap: 10px;
+        }
+        .nav-link.active {
+            background-color: #ff6666;
+            color: white !important;
+            border-radius: 5px;
+        }
+        .nav a {
+            background-color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            color: #ff6666;
+        }
+
+        .header p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .form-group textarea {
+            width: 100%;
+            height: 80px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 14px;
+        }
+
+        .form-group textarea:focus {
+            border-color: #ff6666;
+            outline: none;
+        }
+
+        .rating-stars {
+            display: flex;
+            gap: 10px;
+            font-size: 24px;
+            justify-content: center;
+        }
+
+        .rating-stars i {
+            cursor: pointer;
+            color: #ddd;
+        }
+
+        .rating-stars i.active {
+            color: #ffcc33;
+        }
+
+        .satisfaction-level {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .satisfaction-level img {
+            width: 40px;
+            cursor: pointer;
+        }
+
+        .submit-button {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .submit-button button {
+            background-color: #33cc33;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .submit-button button:hover {
+            background-color: #28a745;
+        }
+
+    </style>
+</head>
+<body>
+    <header class="header d-flex justify-content-between align-items-center">
+        <div class="logo">A</div>
+        <nav class="nav">
+            <a class="nav-link active">Feedback</a>
+            <a href="booking.html" class="nav-link">Book Table</a>
+            <a href="menu.html" class="nav-link">Menu</a>
+        </nav>
+        <div class="d-flex align-items-center">
+            <i class="fas fa-phone me-2"></i>
+            <span>090000000</span>
+            <div class="ms-3">
+                <i class="fas fa-user me-2"></i>
+                Nguyễn Hoàng Anh
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <form>
+            <div class="form-group">
+                <label for="testimonial">Your Testimonial</label>
+                <textarea id="testimonial" placeholder="Share your experience with us..."></textarea>
+            </div>
+            <div class="form-group">
+                <label>Overall Rating</label>
+                <div class="rating-stars">
+                    <i class="fas fa-star" data-rating="1"></i>
+                    <i class="fas fa-star" data-rating="2"></i>
+                    <i class="fas fa-star" data-rating="3"></i>
+                    <i class="fas fa-star" data-rating="4"></i>
+                    <i class="fas fa-star" data-rating="5"></i>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Satisfaction Level</label>
+                <div class="satisfaction-level">
+                    <img src="https://img.icons8.com/color/48/angry.png" alt="Very Dissatisfied">
+                    <img src="https://img.icons8.com/color/48/sad.png" alt="Dissatisfied">
+                    <img src="https://img.icons8.com/color/48/neutral-emoticon.png" alt="Neutral">
+                    <img src="https://img.icons8.com/color/48/happy.png" alt="Satisfied">
+                    <img src="https://img.icons8.com/color/48/lol.png" alt="Very Satisfied">
+                </div>
+                
+            </div>
+            <div class="submit-button">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="feedbackModalLabel">Feedback Received</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="feedbackMessage"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const stars = document.querySelectorAll('.rating-stars i');
+            let selectedRating = 0;
+
+            stars.forEach((star, index) => {
+                star.addEventListener('click', () => {
+                    selectedRating = index + 1;
+                    stars.forEach((s, i) => {
+                        s.classList.toggle('active', i <= index);
+                    });
+                });
+            });
+
+            const satisfactionLevels = document.querySelectorAll('.satisfaction-level img');
+            let selectedSatisfaction = null;
+
+            satisfactionLevels.forEach((level, index) => {
+                level.addEventListener('click', () => {
+                    selectedSatisfaction = index + 1;
+                    satisfactionLevels.forEach((img) => {
+                        img.style.border = '';
+                    });
+                    level.style.border = '2px solid #ff6666';
+                });
+            });
+
+            const form = document.querySelector('form');
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+
+                const testimonial = document.querySelector('#testimonial').value.trim();
+
+                if (!testimonial) {
+                    alert('Please enter your testimonial.');
+                    return;
+                }
+                if (!selectedRating) {
+                    alert('Please select a rating.');
+                    return;
+                }
+                if (!selectedSatisfaction) {
+                    alert('Please select a satisfaction level.');
+                    return;
+                }
+
+                const feedbackMessage = `Thank you for your feedback!<br>
+                    <strong>Testimonial:</strong> ${testimonial}<br>
+                    <strong>Rating:</strong> ${selectedRating} star(s)<br>
+                    <strong>Satisfaction Level:</strong> ${selectedSatisfaction}`;
+                document.getElementById('feedbackMessage').innerHTML = feedbackMessage;
+                const feedbackModal = new bootstrap.Modal(document.getElementById('feedbackModal'));
+                feedbackModal.show();
+
+                form.reset();
+                stars.forEach((star) => star.classList.remove('active'));
+                satisfactionLevels.forEach((level) => (level.style.border = ''));
+                selectedRating = 0;
+                selectedSatisfaction = null;
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Menu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffcc66;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Sidebar */
+        .container {
+            display: flex;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #ff9966;
+            padding: 10px 40px 10px 20px;
+            height: 100vh;
+            border-right: 2px solid #ff6666;
+        }
+
+        .sidebar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .sidebar a {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            color: white;
+            background-color: #ff6666;
+            text-align: left;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .sidebar a.active {
+            background-color: #33cc33;
+        }
+
+        .sidebar a:hover {
+            background-color: #e74c3c;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header .dashboard-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff6666;
+        }
+
+        .header .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header .user-info button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            background-color: #ff9966;
+            color: white;
+            cursor: pointer;
+        }
+
+        .header .user-info button:hover {
+            background-color: #e74c3c;
+        }
+
+        /* Card Styles */
+        .card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            margin-bottom: 20px;
+            text-align: center;
+            color: #ff6666;
+        }
+
+        /* Menu List */
+        .menu-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .menu-list ul li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .menu-list ul li:last-child {
+            border-bottom: none;
+        }
+
+        .menu-list ul li div {
+            display: flex;
+            gap: 10px;
+        }
+
+        .menu-list ul li button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .menu-list ul li button.edit {
+            background-color: #33cc33;
+            color: white;
+        }
+
+        .menu-list ul li button.delete {
+            background-color: #ff6666;
+            color: white;
+        }
+
+        /* Add Dish */
+        .add-dish input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .add-dish button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #33cc33;
+            color: white;
+            cursor: pointer;
+        }
+
+        .add-dish button:hover {
+            background-color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">A</div>
+            <a href="Revenue.html">Revenue</a>
+            <a href="PredictIngredient.html">Predict Ingredient Demand</a>
+            <a href="FeedbackData.html">Feedback Data</a>
+            <a href="CustomerFeedback.html">Customer Feedback</a>
+            <a class="active" href="ManageMenu.html">Manage Menu</a>
+            <a href="TracksBooking.html">Tracks Booking</a>
+            <a href="MISRevenue.html">MIS Revenue</a>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <div class="dashboard-title">Manage Menu</div>
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i>
+                    <button>Admin</button>
+                </div>
+            </div>
+
+            <!-- Menu List -->
+            <div class="card menu-list">
+                <h2>Current Menu List</h2>
+                <ul>
+                    <li>
+                        <span>Canh Chua - 35,000 VND</span>
+                        <div>
+                            <button class="edit">Edit</button>
+                            <button class="delete">Delete</button>
+                        </div>
+                    </li>
+                    <li>
+                        <span>Com Suon - 30,000 VND</span>
+                        <div>
+                            <button class="edit">Edit</button>
+                            <button class="delete">Delete</button>
+                        </div>
+                    </li>
+                    <li>
+                        <span>Pho - 35,000 VND</span>
+                        <div>
+                            <button class="edit">Edit</button>
+                            <button class="delete">Delete</button>
+                        </div>
+                    </li>
+                    <li>
+                        <span>Bun Dau Mam Tom - 55,000 VND</span>
+                        <div>
+                            <button class="edit">Edit</button>
+                            <button class="delete">Delete</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Add Dish -->
+            <div class="card add-dish">
+                <h2>Add Dish</h2>
+                <input type="text" placeholder="Dish name">
+                <input type="text" placeholder="Price">
+                <button>Add</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
